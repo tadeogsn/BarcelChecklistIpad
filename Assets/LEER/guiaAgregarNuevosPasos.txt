@@ -1,0 +1,16 @@
+/////////////////////////////////PASOS PARA AGREGAR NUEVOS PASOS PARA JSON, CHECKLIST(UI) Y LOS ASSETS DE REALIDAD AUMENTADA(PUNTO DE REFERENCIA)///////////////
+
+1.-cuando se agregue un "punto de inspeccion en el administrador" pagina web
+	a.-nos vamos a unity y en la parte de "area target(padre)" damos click para desplegar hijos
+	b.-nos vamos a gameobject que se llama "scripts"
+	c.-adentro de scripts encontramos el script llamado "Checklist"
+
+2.-cuando corra el proyecto en la parte del script   "Checklist->mchecklist" aparacera cuantas instrucciones tenemos agregadas
+
+3.-En la parte de "area target(padre)" damos click para desplegar hijos
+	a.-nos vamos al game object "Contador(punto de referencia)"
+	b.-agregamos el numero de gameobject que nos falta si es que se agregaron, si no, eliminamos, en el caso de que se eliminaran
+	c.-IMPORTATE que se nombre con un numero y que contenga el script "Orden Asset RA Controller" y que no tenga espácios ya que de esta manera se condiciona.
+
+4.-en la parte del mismo script "Checklist->OrdenAsset AR Controller" agregaremos el numero que nos aparecio "Checklist->mchecklist" y arrastramos los
+	gameobjects que agregamos en "area target(padre)->Contador(punto de referencia)" en orden.

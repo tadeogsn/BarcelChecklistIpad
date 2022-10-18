@@ -1,0 +1,105 @@
+{
+    "Checklist":[
+        {
+            "IdDeProcedimiento":"1",
+            "ordenChecklist": "1",
+            "tituloChecklist": "titulo de procedimiento 1",
+            "description": "primera Descripcion",
+            "NombreProcedimiento":"procedimiento de limpieza freidora",
+            "objCheckListRA":[
+                {
+                    "NombreAsset": "imagen",
+                    "UrlServer": "titulo de procedimiento",
+                    "Tipo": "imagen",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Knoll",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/GSN-KNOLL.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                }
+            ]
+        },
+        {
+            "IdDeProcedimiento":"1",
+            "ordenChecklist": "2",
+            "tituloChecklist": "titulo de procedimiento 1",
+            "description": "primera Descripcion",
+            "NombreProcedimiento":"procedimiento de limpieza freidora",
+            "objCheckListRA":[
+                {
+                    "NombreAsset": "imagen",
+                    "UrlServer": "titulo de procedimiento",
+                    "Tipo": "imagen",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Knoll",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/GSN-KNOLL.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                }
+            ]
+        },
+        {
+            "IdDeProcedimiento":"1",
+            "ordenChecklist": "3",
+            "tituloChecklist": "titulo de procedimiento 1",
+            "description": "primera Descripcion",
+            "NombreProcedimiento":"procedimiento de limpieza freidora",
+            "objCheckListRA":[
+                {
+                    "NombreAsset": "imagen",
+                    "UrlServer": "titulo de procedimiento",
+                    "Tipo": "imagen",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Knoll",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/GSN-KNOLL.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                },
+                {
+                    "NombreAsset": "Hololens",
+                    "UrlServer": "https://gsn-servicios-ra.com/assetsPrueba/What%20can%20HoloLens%202%20do_.mp4",
+                    "Tipo": "video",
+                    "OrdenChecklist":"1"
+                }
+            ]
+        }
+        
+        
+    ]
+}

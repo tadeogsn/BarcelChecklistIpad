@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_info.xsd">
+    <TargetSet version="3.4">
+        <AreaTarget version="5.0" bbox="-15.5575 -0.0970 -11.4935 14.9227 12.0140 4.7167" targetId="10703e2207e242fba0c36d30af1ce465" name="BMW_demo_target" pathAuthoring="10703e2207e242fba0c36d30af1ce465_authoring.glb" pathOcclusion="10703e2207e242fba0c36d30af1ce465_occlusion.3dt" pathNavMesh="10703e2207e242fba0c36d30af1ce465_navmesh.glb" />
+    </TargetSet>
+</QCARInfo>
