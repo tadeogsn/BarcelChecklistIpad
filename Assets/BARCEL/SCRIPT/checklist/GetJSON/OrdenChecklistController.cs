@@ -10,6 +10,7 @@ public class getObjectNumber
     public Text tituloChecklist;
     public Text descripcion;
     public Text nombreProcedimiento;
+    public Text ValorMaximo;
 
     //BOTONES SIGUIENTE, ANTERIOR Y TOMAR FOTO
 
@@ -26,14 +27,14 @@ public class OrdenChecklistController : MonoBehaviour
     public getObjectNumber objCanvas;
 
     //ESTA FUNCION SE EJECUTA EN EL SCRIPT DE "checklist.cs"
-    public void DisplayDataPanel(ChecklistList Checjelist, int Contador, int listSizeEntries)
+    public void DisplayDataPanel(PuntosDeInspeccionList Checjelist, int Contador, int listSizeEntries)
     {
 
-        Debug.Log("ChecklistList size " +Checjelist.Checklist.Length+" y tamaño de entries "+listSizeEntries);
+        Debug.Log("PuntosDeInspeccionList size " +Checjelist.PuntosDeInspeccion.Length+" y tamaï¿½o de entries "+listSizeEntries);
         //obtenemos el ultimo valos del checklist
         var _contador = Contador - 1;//ya que el objeto "Checjelist.Checklist" empieza de cero
         Debug.Log("valor contador "+ _contador);
-        var lasnumero = Checjelist.Checklist.Length;
+        var lasnumero = Checjelist.PuntosDeInspeccion.Length;
         //Debug.Log("contador de ordenChecklist "+ valueObj + "last numero "+lasnumero);
         //var lastElement = Checjelist.Checklist[Checjelist.Checklist.Length-1];
 
@@ -46,23 +47,26 @@ public class OrdenChecklistController : MonoBehaviour
                  objCanvas.tituloChecklist.text     = "TERMINADO";
                  objCanvas.descripcion.text         = "Presionar a enviar para que los datos sean almacenados en el servidor y puedan ser vistos por los administradores";
                  objCanvas.nombreProcedimiento.text = "................";
+                 objCanvas.ValorMaximo.text           =".................";
             }
-            else if (Checjelist.Checklist[_contador].ordenChecklist == "" && Checjelist.Checklist[_contador].tituloChecklist == "" && Checjelist.Checklist[_contador].description == "" && Checjelist.Checklist[_contador].NombreProcedimiento == "")
+            else if (Checjelist.PuntosDeInspeccion[_contador].Orden == "" && Checjelist.PuntosDeInspeccion[_contador].Nombre == "" && Checjelist.PuntosDeInspeccion[_contador].Descripcion == "" && Checjelist.PuntosDeInspeccion[_contador].Titulo == "")
             {
                  objCanvas.ordenChecklist.text      = "No hay numero";
                  objCanvas.tituloChecklist.text     = "No hay titulo";
-                 objCanvas.descripcion.text         = "Descripción no disponible";
+                 objCanvas.descripcion.text         = "Descripciï¿½n no disponible";
                  objCanvas.nombreProcedimiento.text = "................";
+                 objCanvas.ValorMaximo.text           =".................";
 
             }
             else
             {
                 ///la logica no tiene lo de ordenar el checklist segun el "ordenChecklist" hacerlo si es que se necesita
-                 objCanvas.ordenChecklist.text      = Checjelist.Checklist[_contador].ordenChecklist;
-                 objCanvas.tituloChecklist.text     = Checjelist.Checklist[_contador].tituloChecklist;
-                 objCanvas.descripcion.text         = Checjelist.Checklist[_contador].description;
-                 objCanvas.nombreProcedimiento.text = Checjelist.Checklist[_contador].NombreProcedimiento;
-            }
+                 objCanvas.ordenChecklist.text      = Checjelist.PuntosDeInspeccion[_contador].Orden;
+                 objCanvas.tituloChecklist.text     = Checjelist.PuntosDeInspeccion[_contador].Nombre;
+                 objCanvas.descripcion.text         = Checjelist.PuntosDeInspeccion[_contador].Descripcion;
+                 objCanvas.nombreProcedimiento.text = Checjelist.PuntosDeInspeccion[_contador].Titulo;
+                 objCanvas.ValorMaximo.text           = Checjelist.PuntosDeInspeccion[_contador].MaxParemetros;
+        }
         // BOTONES SIGUEINTE(UI) O ANTERIOR(UI)
         //ACTIVA Y DESACTIVA AL PRINCIPIO Y AL FINAL
             
@@ -95,7 +99,7 @@ public class OrdenChecklistController : MonoBehaviour
                     }else
                     { 
                         Debug.Log("si el ultimo numero es igual al contador");
-                        if (Checjelist.Checklist.Length <= 1)
+                        if (Checjelist.PuntosDeInspeccion.Length <= 1)
                         {
                             Debug.Log("si el ultimo numero es igual al contador");
                             objCanvas.botonAnterior.SetActive(false);

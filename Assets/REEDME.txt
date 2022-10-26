@@ -1,0 +1,22 @@
+Proyecto parado por cambios drasticos.
+
+////solo hablaremos parte funcional////
+
+1.- LOGIN
+   -todo funciona bien, solo que faltaria hacer la funcionabilidad para enviar el dato necesario para
+    la escena "Roles" y muestres los roles disponibles para cada usuario
+
+2.- ROLES
+    - En esta parte tenemos un JSON que llena los botones de los roles
+    - ya funiona lo de mandar un id especifico para que muestre el checklist seleccionado
+    - fata crear por scenas ya que, cada escena tiene un area target y cada area target tiene sus
+      puntos de inspeccion en cada punto especifico del area
+    - tenemos que crear una nueva tabla "Roles" en la base de datos
+
+3.- CHECKLIST Y RESULTADOS
+    -paso algo raro cuando deje el proyecto, cuando cree un chekclist con dos puntos de inspeccion el que tenia dos paso se rompio
+    -hacer pruebas si no afecta que no se vacien los resultado de los json que se llennas cuando se les ingresa un input y al momento 
+     de enviar vaciarlos para que no haya problema con el siguiente punto de inspeccion
+    -ocultar cuando sea necesario la "Vista previa" ya que ahorita siempre esta activa
+
+    

@@ -46,8 +46,9 @@ public class reporteChecklist : MonoBehaviour
         BotonEnvioReporte.SetActive(false);
 
         /////////////////////////////////////////////
-        string url= "http://192.168.8.39/Barcel/pruebas/reporte.php";
+        string url= "http://localhost/Barcel/pruebas/reporte.php";
         string json = File.ReadAllText(Application.persistentDataPath + "/resultadoBD");
+        Debug.Log("La ubicacion esta aqui "+Application.persistentDataPath);
         var wclient = new WebClient();
         var campos = new NameValueCollection();
         campos.Add("jsonReporte", json);

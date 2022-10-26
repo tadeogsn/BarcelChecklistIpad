@@ -8,32 +8,33 @@ using UnityEngine.UI;
 public class login : MonoBehaviour
 {
     public InputField NumeroDeEmpleado;
-    public InputField Contraseña;
+    public InputField ContraseÃ±a;
     public Text textError;
 
 
     public void validarLogin()
     {
-        if (NumeroDeEmpleado.text==""||Contraseña.text=="")
+        if (NumeroDeEmpleado.text==""||ContraseÃ±a.text=="")
         {
-            textError.text="Ingresar ususario o contraseña";
+            textError.text="Ingresar ususario o contraseÃ±a";
+
         }
         else
         {
             textError.text = "";
             //Debug.Log("entro");
-            StartCoroutine(Login(NumeroDeEmpleado.text,Contraseña.text));
+            StartCoroutine(Login(NumeroDeEmpleado.text,ContraseÃ±a.text));
         }
         
     }
 
-    private IEnumerator Login(string numeroDeEmpleado, string contraseña)
+    private IEnumerator Login(string numeroDeEmpleado, string contraseÃ±a)
     {
         
-        string url = "http://192.168.8.39/Barcel/pruebas/login.php";
+        string url = "http://localhost/Barcel/pruebas/login.php";
         WWWForm form = new WWWForm();
         form.AddField("NumeroDeEmpleado", numeroDeEmpleado);
-        form.AddField("Contraseña", contraseña);
+        form.AddField("Contraseï¿½a", contraseÃ±a);
         UnityWebRequest www = UnityWebRequest.Post(url, form);
         yield return www.SendWebRequest();
         Debug.Log("entro");
@@ -47,12 +48,12 @@ public class login : MonoBehaviour
             if (www.isDone)
             {
                 var result = System.Text.Encoding.UTF8.GetString(www.downloadHandler.data);
-                Debug.Log("este es el resultado de mi petición " + result);
+                Debug.Log("este es el resultado de mi peticiï¿½n " + result);
 
                 //ESTOS RESULTADOS VIENEN DE Login.php
-                if (result == "los datos no se pudieron agregar a la base de datos" || result == "Usuario o contraseña incorrectos")
+                if (result == "los datos no se pudieron agregar a la base de datos" || result == "Usuario o contraseï¿½a incorrectos")
                 {
-                    Debug.Log("este es el resultado de mi petición " + result);
+                    Debug.Log("este es el resultado de mi peticiï¿½n " + result);
                     textError.text = result;
                 }
                 else
@@ -70,5 +71,7 @@ public class login : MonoBehaviour
                 Debug.Log("Error! data couldnt get.");
             }
         }
+     }
+     
     }
-}
+

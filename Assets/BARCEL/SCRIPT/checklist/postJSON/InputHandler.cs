@@ -12,7 +12,7 @@ public class InputHandler : MonoBehaviour
 {
     [SerializeField] string var_OrdenCheck;
     [SerializeField] InputField var_resultInput;
-    [SerializeField] string valorReal;
+    [SerializeField] public string valorReal;
     [SerializeField] InputField var_notas;
     [SerializeField] GameObject botonCamra;//uso para cuando sea diferente de vacio de inputvalorreal 
 
@@ -58,7 +58,7 @@ public class InputHandler : MonoBehaviour
             Debug.Log("entro a foto");
             if (i == 0)
             {
-                Debug.Log("entro a foto"+ " VALOR DE ENTRIES" + entries[i].Results);
+                Debug.Log("entro a foto"+ " VALOR real");
                 //NOTAS DEL PUNTO DE INSPECCION ACTUAL(i)
                 var_notas.text = entries[i].Notas;
                 //FIN DE NOTAS
@@ -76,7 +76,7 @@ public class InputHandler : MonoBehaviour
                 //usamos la nueva textura para cargar los bytes 
                 texture.LoadImage(fotoTomada[(i)].foto);
 
-                //es la parte donde le damos tamaño a la textura que recbimos 
+                //es la parte donde le damos tamaï¿½o a la textura que recbimos 
                 Rect rect = new Rect(0, 0, texture.width, texture.height);
                 //activamos la vista previa
                 vistaPreviaImg.enabled = true;
@@ -93,58 +93,76 @@ public class InputHandler : MonoBehaviour
     public void InputParametroReal()
     {
         valorReal=var_resultInput.text;
+        Debug.Log("entro a foto"+ " VALOR real2");
         Debug.Log("Entro al input de valor real " + valorReal);
         if (var_resultInput.text != "") botonCamra.SetActive(true); else botonCamra.SetActive(false);
     }
 
+    public void ultimoValorChecklist(){//se usa cuando ya estoy en los resultados, y quiero regresar al checklist pero necesito dibujar los ultimos inputs de checklist
+            //NOTAS DEL PUNTO DE INSPECCION ACTUAL(i)
+                        var_notas.text = entries[entries.Count-1].Notas;
+                        //FIN DE NOTAS
 
-    public void ButonSiguientePost(ChecklistList Checjelist, int Contador, string horaActualNombre)
+                        //Input de valor real del punto de inspeccion actual(i)
+                        var_resultInput.text = entries[entries.Count-1].Results;
+                        Debug.Log("entro a foto"+ " VALOR real 5");
+                        
+                        valorReal = entries[entries.Count-1].Results;
+                        //FIN valor real
+    }
+
+
+    public void ButonSiguientePost(PuntosDeInspeccionList Checjelist, int Contador, string horaActualNombre)
     {
         //escribimos el formato como ira insertado a la base de datos
         Infohora = horaActualNombre;
         InfoImagen = "image/" + horaActualNombre + ".png";
-        Debug.Log("aquitoy0 " + (Contador - 2));
+        Debug.Log("aquitoy0 " + Contador);
 
 
 
         //dataFoto = ScriptCamara.ResultByteScreenshot.Length;
 
-        Debug.Log("entries.Count(LISTA EMPIEZA 1)= " + entries.Count + "valor de contador= " + (Contador-2) + "  ORDEN CHEKLIST= "+ Checjelist.Checklist[Contador - 2].ordenChecklist);
+       // Debug.Log("entries.Count(LISTA EMPIEZA 1)= " + entries.Count + "valor de contador= " + (Contador-2) + "  ORDEN CHEKLIST= "+ Checjelist.Checklist[Contador - 2].ordenChecklist);
         if (entries.Count==Contador-2)///CUANDO SE EMPIEZA EL PROCEDIEMIENTO
         {
+            Debug.Log("entro a foto"+ " VALOR real 3" +Contador);
             Debug.Log("aquitoy0 " + var_notas.text);
             if (var_notas.text == "") var_notas.text = "Sin comentarioss";
             //if (var_resultInput.text != "") botonCamra.SetActive(true); else botonCamra.SetActive(false);
-            entries.Add(new InputEntry(Checjelist.Checklist[Contador-2].ordenChecklist, valorReal, InfoImagen, var_notas.text,Checjelist.Checklist[Contador - 2].IdDeProcedimiento));
+            entries.Add(new InputEntry(Checjelist.PuntosDeInspeccion[Contador-2].Orden, valorReal, InfoImagen, var_notas.text));
             
 
             FileHandler.SaveToJSON<InputEntry>(entries, filenameJsonBD);
             var_notas.text = "";
-            //var_resultInput.text = "";
-            //valorReal = "";
+            var_resultInput.text = "";
+            valorReal = "";
         }
         else//CAUNDO REGRESAN CORREGIR VALORES INGRESADOS
         {
             for (int i = 0; i < entries.Count; i++)
             {
-                if (i == Contador - 2)//se compára con la lista "entires", "i" empieza de cero, contador de cero pero con los textos, cuando empieza la scena "Start()" ya conto 0 y cuando doy siguiente ya es 1 por eso lo resto "-1"
+                Debug.Log("valor de entries "+i);
+                if (i == Contador - 2)//se compï¿½ra con la lista "entires", "i" empieza de cero, contador de cero pero con los textos, cuando empieza la scena "Start()" ya conto 0 y cuando doy siguiente ya es 1 por eso lo resto "-1"
                 {
-                    Debug.Log("aquitoy1 " + var_notas.text);
+                    Debug.Log("aquitoy1 " + valorReal+ i);
+                    Debug.Log("entro a foto"+ " VALOR real 4");
                     if (var_notas.text == "") var_notas.text = "Sin comentarios " + i;
                     if (var_resultInput.text != "") botonCamra.SetActive(true); else botonCamra.SetActive(false);
                     //al contador esta con -1 ya que utilzamos un valor "anterior" para el boton siguiente
-                    entries[i] = new InputEntry(Checjelist.Checklist[Contador - 2].ordenChecklist, valorReal, InfoImagen, var_notas.text, Checjelist.Checklist[Contador - 2].IdDeProcedimiento);
+                    entries[i] = new InputEntry(Checjelist.PuntosDeInspeccion[Contador - 2].Orden, valorReal, InfoImagen, var_notas.text);
                     FileHandler.SaveToJSON<InputEntry>(entries, filenameJsonBD);
                     var_notas.text = "";
-                    //var_resultInput.text = "";
-                    //valorReal = "";
+                    var_resultInput.text = "";
+                    valorReal = "";
                 }
             }
         }
     }
-    public void ButtonTomarFoto(int Contador, string horaActualNombre)
+    public void ButtonTomarFoto(int Contador, string horaActualNombre, bool sumarContador)
     {
-        Debug.Log("entro a foto 1");
+        
+        Debug.Log("entro a foto 1 "+ Contador);
         //creamos una lista donde se almacenaran los bytes para despues usarlos cuando se guarden en el servidor
         Debug.Log("Foto tomada " + fotoTomada.Count + " contador " + Contador);
         if (fotoTomada.Count == Contador - 2 )//PRIMERA VEZ QUE SE TOMAN TODAS LAS FOTOS
@@ -164,19 +182,26 @@ public class InputHandler : MonoBehaviour
             Debug.Log("entro a foto 3");
             for ( int i =0; i<fotoTomada.Count; i++ )//fotos tomadas en la experiencia 
             {
+                
                 Debug.Log("entro a foto 4");
                 if ( i == Contador -2 )
                 {
-                    if ((i+1)<fotoTomada.Count)//evita que envie valor que no existe en el boton "siguiente" del ultimo "punto de inspeccion"
+                    
+                    Debug.Log("entro a foto 5.1 " + "contador " + (Contador));
+                    if ((i+1)<fotoTomada.Count||(i+1)<=fotoTomada.Count&& sumarContador==false)//evita que envie valor que no existe en el boton "siguiente" del ultimo "punto de inspeccion"
                     {
-                        Debug.Log("entro a foto 5" + "contador " + (Contador - 2) + "valor de i " + i +"entrie count"+ entries[i].Results);
+                        Debug.Log(" ciclo for "+i);
+                        if(sumarContador==true){//SI SE DIO BOTON SIGUIENTE
+                            Debug.Log("entro a foto 5" + "contador " + (Contador) + "valor de i " + i +"entrie count"+ entries[i].Results +" valor real "+valorReal);
                         //NOTAS DEL PUNTO DE INSPECCION ACTUAL(i)
-                        var_notas.text = entries[i + 1].Notas;
+                        var_notas.text = entries[(i+1)].Notas;
                         //FIN DE NOTAS
 
                         //Input de valor real del punto de inspeccion actual(i)
-                        var_resultInput.text = entries[i+1].Results;
-                        valorReal = var_resultInput.text;
+                        var_resultInput.text = entries[(i+1)].Results;
+                        Debug.Log("entro a foto"+ " VALOR real 5");
+                        
+                        valorReal = entries[(i+1)].Results;
                         //FIN valor real
 
 
@@ -187,7 +212,7 @@ public class InputHandler : MonoBehaviour
                         //usamos la nueva textura para cargar los bytes 
                         texture.LoadImage(fotoTomada[(i + 1)].foto);
 
-                        //es la parte donde le damos tamaño a la textura que recbimos 
+                        //es la parte donde le damos tamaÃ±o a la textura que recbimos 
                         Rect rect = new Rect(0, 0, texture.width, texture.height);
                         //activamos la vista previa
                         vistaPreviaImg.enabled = true;
@@ -195,12 +220,45 @@ public class InputHandler : MonoBehaviour
                         ////aqui creamos el sprite para que pueda ser compatible con la textura(vista previa)
                         vistaPreviaImg.sprite = Sprite.Create(texture, rect, new Vector2(1f, 1f));
                         //FIN VISTA PREVIA
+                        }else
+                        {
+                            // SI SE DIO BOTON ANTERIOR
+                                Debug.Log("entro a foto 5.5 " + " contador " + (Contador) + "valor de i " + i +"entrie count"+ entries[i].Results+" valor real "+valorReal);
+                            //NOTAS DEL PUNTO DE INSPECCION ACTUAL(i)
+                            var_notas.text = entries[(i-1)].Notas;
+                            //FIN DE NOTAS
+
+                        //Input de valor real del punto de inspeccion actual(i)
+                        var_resultInput.text = entries[(i-1)].Results;
+                        Debug.Log("entro a foto"+ " VALOR real 5");
+                        
+                        valorReal = entries[(i-1)].Results;
+                        //FIN valor real
+
+
+                        //VISTA PREVIA CADA QUE SE LE DA SIGUIENTE AL BOTON
+                        //creamos una nueva textura para la vista previa
+                        Texture2D texture = new Texture2D(0, 0);
+                        //Debug.Log("entro a foto"+(i + 1));
+                        //usamos la nueva textura para cargar los bytes 
+                        texture.LoadImage(fotoTomada[(i-1)].foto);
+
+                        //es la parte donde le damos tamaÃ±o a la textura que recbimos 
+                        Rect rect = new Rect(0, 0, texture.width, texture.height);
+                        //activamos la vista previa
+                        vistaPreviaImg.enabled = true;
+
+                        ////aqui creamos el sprite para que pueda ser compatible con la textura(vista previa)
+                        vistaPreviaImg.sprite = Sprite.Create(texture, rect, new Vector2(1f, 1f));
+                        //FIN VISTA PREVIA
+                        }
+                        
                     }
 
 
 
                     ///GUARDAR FOTO EN LA UBUCACION ACTUAL DE DONDE FUE TOMADA
-                    Debug.Log("tamaño de la foto tomada "+ScriptCamara.ResultByteScreenshot.Length);
+                    Debug.Log("tamaÃ±o de la foto tomada "+ScriptCamara.ResultByteScreenshot.Length);
                     if (ScriptCamara.ResultByteScreenshot.Length!=0)
                     {
                         Debug.Log("entro a foto 6");
@@ -229,7 +287,9 @@ public class InputHandler : MonoBehaviour
 
                         //Input de valor real del punto de inspeccion actual(i)
                         var_resultInput.text = entries[i].Results;
-                        valorReal = var_resultInput.text;
+                        valorReal = entries[i].Results;
+                        Debug.Log("entro a foto"+ " VALOR real 6");
+
                         //FIN valor real
 
 
@@ -240,7 +300,7 @@ public class InputHandler : MonoBehaviour
                         //usamos la nueva textura para cargar los bytes 
                         texture.LoadImage(fotoTomada[(i)].foto);
 
-                        //es la parte donde le damos tamaño a la textura que recbimos 
+                        //es la parte donde le damos tamaï¿½o a la textura que recbimos 
                         Rect rect = new Rect(0, 0, texture.width, texture.height);
                         //activamos la vista previa
                         vistaPreviaImg.enabled = true;
@@ -266,10 +326,10 @@ public class InputHandler : MonoBehaviour
     }
     public IEnumerator sendFile()
     {
-        var url = "http://192.168.8.39/Barcel/pruebas/serverImage.php";
+        var url = "http://localhost/Barcel/pruebas/serverImage.php";
         string json = File.ReadAllText(Application.persistentDataPath + "/resultadoSERVER");
         sendfotoTomada = JsonUtility.FromJson<sendServerObjFoto>(json);
-        Debug.Log("foto tomadaaaa " + sendfotoTomada.Results[0].foto.Length);
+        Debug.Log("foto tomadaaaa " + Application.persistentDataPath);
         WWWForm form = new WWWForm();
         for (int i = 0; i < sendfotoTomada.Results.Length; i++)
         {
@@ -280,7 +340,7 @@ public class InputHandler : MonoBehaviour
 
             if (www.result != UnityWebRequest.Result.Success)
             {
-                // Debug.Log("este es el resultado de mi petición ");
+                // Debug.Log("este es el resultado de mi peticiï¿½n ");
                 Debug.Log(www.error);
                 smsFtosServer.text = "la informacion no se cargo  ";
             }

@@ -1,0 +1,34 @@
+{
+    "Roles":[
+        {
+            "FehcaInspeccion":"1",
+            "Area": "3",
+            "Linea": "titulo de procedimiento 1",
+            "Celula": "titulo de celula",
+            "Asset": "primera Descripcion",
+            "NombreChecklist":"limpieza freidora",
+            "id_CheckList":"1",
+            "Id_Usuario":"1"
+        },
+        {
+            "FehcaInspeccion":"1",
+            "Area": "12",
+            "Linea": "titulo de procedimiento 1",
+            "Celula": "titulo de celula",
+            "Asset": "primera Descripcion",
+            "NombreChecklist":"limpieza freidora",
+            "id_CheckList":"2",
+            "Id_Usuario":"1"
+        },
+        {
+            "FehcaInspeccion":"1",
+            "Area": "1",
+            "Linea": "titulo de procedimiento 1",
+            "Celula": "titulo de celula",
+            "Asset": "primera Descripcion",
+            "NombreChecklist":"limpieza freidora",
+            "id_CheckList":"1",
+            "Id_Usuario":"1"
+        }  
+    ]
+}
